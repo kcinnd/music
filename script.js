@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             if (note.revealed && distance < 50) {
                 playAudio = note;
-            } else if (!note.revealed && distance < 25) {
+            } else if (!note.revealed && distance < 35) {
                 drawNoteImage(note, note.x, note.y);
                 note.revealed = true;
             }
