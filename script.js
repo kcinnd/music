@@ -76,12 +76,12 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function drawLight(x, y, color) {
-        const gradient = ctx.createRadialGradient(x, y, 1, x, y, 25);
+        const gradient = ctx.createRadialGradient(x, y, 1, x, y, 50);
         gradient.addColorStop(0, color[0]);
         gradient.addColorStop(1, color[1]);
         ctx.fillStyle = gradient;
         ctx.beginPath();
-        ctx.arc(x, y, 25, 0, 2 * Math.PI);
+        ctx.arc(x, y, 50, 0, 2 * Math.PI);
         ctx.fill();
     }
 
