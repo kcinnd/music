@@ -1,0 +1,16 @@
+/* Ensure the body and html elements take up the full viewport height */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Prevent scrolling */
+}
+
+/* Style the canvas to fill the entire screen and set the background to black */
+canvas {
+    display: block; /* Remove default margin */
+    background: black;
+    width: 100%;
+    height: 100%;
+}
