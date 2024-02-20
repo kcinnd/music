@@ -55,24 +55,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
     generateNotes();
 
-    function drawLight(x, y, color) {
-        const gradient = ctx.createRadialGradient(x, y, 1, x, y, 50);
-        gradient.addColorStop(0, color[0]);
-        gradient.addColorStop(1, color[1]);
-        ctx.fillStyle = gradient;
-        ctx.beginPath();
-        ctx.arc(x, y, 50, 0, 2 * Math.PI);
-        ctx.fill();
-    }
-
-    function revealNote(note) {
-        // Placeholder for drawing a music note
-        // This can be replaced with an image or more complex drawing
-        ctx.fillStyle = 'white';
-        ctx.beginPath();
-        ctx.arc(note.x, note.y, noteRadius, 0, 2 * Math.PI);
-        ctx.fill();
-        note.revealed = true;
+    function drawNoteImage(note, x, y) {
+        if (!note.img.complete) {
+            note.img.onload = function() {
+                ctx.drawImage(note.img, x - note.img.width / 2, y - note.img.height / 2);
+            }
+        } else {
+            ctx.drawImage(note.img, x - note.img.width / 2, y - note.img.height / 2);
+        }
     }
 
     canvas.addEventListener('click', function(event) {
@@ -80,12 +70,14 @@ document.addEventListener("DOMContentLoaded", function() {
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
 
-        const color = lightBeamColors[Math.floor(Math.random() * lightBeamColors.length)];
+        const colorIndex = Math.floor(Math.random() * lightBeamColors.length);
+        const color = lightBeamColors[colorIndex];
         drawLight(x, y, color);
 
         notes.forEach(note => {
-            if (!note.revealed && Math.hypot(x - note.x, y - note.y) < noteRadius * 2) {
-                revealNote(note);
+            if (!note.revealed && Math.hypot(x - note.x, y - note.y) < 25) {
+                drawNoteImage(note, note.x, note.y);
+                note.revealed = true;
             }
         });
     });
