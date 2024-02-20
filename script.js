@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
         ['rgba(75, 0, 130, 1)', 'rgba(75, 0, 130, 0)'],
         ['rgba(252, 142, 172, 1)', 'rgba(252, 142, 172, 0)'],
         ['rgba(0, 255, 195, 1)', 'rgba(0, 255, 195, 0)']
-        ].map(src => {
+    ].map(src => {
         const img = new Image();
         img.src = src;
         return img;
