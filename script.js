@@ -85,8 +85,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function generateNotes() {
     const notes = [];
-    const margin = 50; // Margin value to keep notes away from the edges
-    const minDistance = 100; // Minimum distance between any two notes
+    const margin = 100; // Margin value to keep notes away from the edges
+    const minDistance = 200; // Minimum distance between any two notes
 
     for (let i = 0; i < noteImages.length; i++) {
         let isValidPosition = false;
@@ -168,9 +168,9 @@ document.addEventListener("DOMContentLoaded", function() {
             const dy = y - note.y;
             const distance = Math.sqrt(dx * dx + dy * dy);
 
-            if (note.revealed && distance < 50) {
+            if (note.revealed && distance < 25) {
                 playAudio = note;
-            } else if (!note.revealed && distance < 35) {
+            } else if (!note.revealed && distance < 40) {
                 drawNoteImage(note, note.x, note.y);
                 note.revealed = true;
             }
