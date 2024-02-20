@@ -84,19 +84,21 @@ document.addEventListener("DOMContentLoaded", function() {
     let notes = generateNotes();
 
     function generateNotes() {
-        const notes = [];
-        for (let i = 0; i < noteImages.length; i++) {
-            let note = {
-                img: noteImages[i],
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                revealed: false,
-                audio: new Audio(audioClips[i])
-            };
-            notes.push(note);
-        }
-        return notes;
+    const notes = [];
+    const margin = 50; // Margin value to keep notes away from the edges
+
+    for (let i = 0; i < noteImages.length; i++) {
+        let note = {
+            img: noteImages[i],
+            x: Math.random() * (canvas.width - 2 * margin) + margin, // Adjust x position to include margin
+            y: Math.random() * (canvas.height - 2 * margin) + margin, // Adjust y position to include margin
+            revealed: false,
+            audio: new Audio(audioClips[i])
+        };
+        notes.push(note);
     }
+    return notes;
+}
 
     function drawLight(x, y, color) {
         const gradient = ctx.createRadialGradient(x, y, 1, x, y, 50);
