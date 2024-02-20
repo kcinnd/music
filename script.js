@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
         ['rgba(0, 255, 195, 1)', 'rgba(0, 255, 195, 0)']
     ];
 
-                          const noteImages = [
+    const noteImages = [
         "https://i.imgur.com/CJ09TQq.png",
         "https://i.imgur.com/b5fsfMv.png",
         "https://i.imgur.com/iAKvZfs.png",
@@ -59,6 +59,28 @@ document.addEventListener("DOMContentLoaded", function() {
         return img;
     });
 
+    const audioClips = [
+        "https://audio.jukehost.co.uk/aOz6KfillnraJHw8E38nj0c8T4uJk3uG.mp3",
+        "https://audio.jukehost.co.uk/gVJZ29CcDLHA2eu5N2ZRthH68jtWW6Gw.mp3",
+        "https://audio.jukehost.co.uk/kuI9Js3hy2kiVgojRv2yiaORL7tYYlAX.mp3",
+        "https://audio.jukehost.co.uk/hkfgqlNOAxj1LgWDOBQhRTbzxq0a3xBV.mp3",
+        "https://audio.jukehost.co.uk/lXCaYbwjVyRzckOilvVZxdg9MJOwy9xN.mp3",
+        "https://audio.jukehost.co.uk/84b4xaUM74UJaRWCbVVeUCF822yTximk.mp3",
+        "https://audio.jukehost.co.uk/e0cf53pFpqlBHa3mWIe9EFoZKNKUzjo3.mp3",
+        "https://audio.jukehost.co.uk/XTKnG2oLrq1UxCHq5yHa2hp71kkaLHAY.mp3",
+        "https://audio.jukehost.co.uk/xk3OfU1NDtUeRUQPlbcGmt8uNG3Hyr0m.mp3",
+        "https://audio.jukehost.co.uk/hB9tnsYoYcOTi70O0oi5auIU3ZL6BEJx.mp3",
+        "https://audio.jukehost.co.uk/WBe5RCJJP1vMfuaewKp1T39qm8Bm0auc.mp3",
+        "https://audio.jukehost.co.uk/Zs2Ef5WCCqJswEUHc18CjbezfCl9gseq.mp3",
+        "https://audio.jukehost.co.uk/26mQRqqYvPTbYVxegWXphWfYzPvlitOA.mp3",
+        "https://audio.jukehost.co.uk/3rJtM3HgdQKHPj6NVcsANgc39sPIlwfR.mp3",
+        "https://audio.jukehost.co.uk/vAVSRkgnD3jff7jYigFHdZlV4gxkdUfQ.mp3",
+        "https://audio.jukehost.co.uk/xHRDRPYmIWURW5h4YTpgP3zZhl24NHBn.mp3",
+        "https://audio.jukehost.co.uk/Pkce3RxLuRVE31dMiSiUqeSQt4FaamBB.mp3",
+        "https://audio.jukehost.co.uk/2gRP6adaDph5ZaHRDaBZNhiggfhPhmGa.mp3",
+        "https://audio.jukehost.co.uk/sSUTAJ1O3JYJ8nNfuV5LC55avoRySwAZ.mp3"
+];
+
     let notes = generateNotes();
 
     function generateNotes() {
@@ -68,7 +90,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 img: noteImages[i],
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
-                revealed: false
+                revealed: false,
+                audio: new Audio(audioClips[i])
             };
             notes.push(note);
         }
