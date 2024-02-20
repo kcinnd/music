@@ -109,41 +109,62 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function drawNoteImage(note, x, y) {
-    const maxWidth = 100; // Maximum width for the note images
-    let imgWidth = note.img.width;
-    let imgHeight = note.img.height;
+        const maxWidth = 100;
+        let imgWidth = note.img.width;
+        let imgHeight = note.img.height;
 
-    // Check if the image width exceeds the maximum allowed width
-    if (imgWidth > maxWidth) {
-        const scaleFactor = maxWidth / imgWidth; // Calculate the scaling factor
-        imgWidth = maxWidth; // Set the image width to the maximum width
-        imgHeight *= scaleFactor; // Adjust the height to maintain the aspect ratio
-    }
+        if (imgWidth > maxWidth) {
+            const scaleFactor = maxWidth / imgWidth;
+            imgWidth = maxWidth;
+            imgHeight *= scaleFactor;
+        }
 
-    // Draw the image centered on (x, y), scaled if necessary
-    if (!note.img.complete) {
-        note.img.onload = function() {
+        if (!note.img.complete) {
+            note.img.onload = function() {
+                ctx.drawImage(note.img, x - imgWidth / 2, y - imgHeight / 2, imgWidth, imgHeight);
+            };
+        } else {
             ctx.drawImage(note.img, x - imgWidth / 2, y - imgHeight / 2, imgWidth, imgHeight);
         }
-    } else {
-        ctx.drawImage(note.img, x - imgWidth / 2, y - imgHeight / 2, imgWidth, imgHeight);
     }
-}
+
+    function toggleAudio(note) {
+        if (!note.audio.paused) {
+            note.audio.pause();
+        } else {
+            if (note.audio.ended) {
+                note.audio.currentTime = 0;
+            }
+            note.audio.play();
+        }
+    }
 
     canvas.addEventListener('click', function(event) {
         const rect = canvas.getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
 
-        const colorIndex = Math.floor(Math.random() * lightBeamColors.length);
-        const color = lightBeamColors[colorIndex];
-        drawLight(x, y, color);
+        let playAudio = null;
 
         notes.forEach(note => {
-            if (!note.revealed && Math.hypot(x - note.x, y - note.y) < 25) {
+            const dx = x - note.x;
+            const dy = y - note.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (note.revealed && distance < 50) {
+                playAudio = note;
+            } else if (!note.revealed && distance < 25) {
                 drawNoteImage(note, note.x, note.y);
                 note.revealed = true;
             }
         });
+
+        if (!playAudio) {
+            const colorIndex = Math.floor(Math.random() * lightBeamColors.length);
+            const color = lightBeamColors[colorIndex];
+            drawLight(x, y, color);
+        } else {
+            toggleAudio(playAudio);
+        }
     });
 });
