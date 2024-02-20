@@ -31,29 +31,37 @@ document.addEventListener("DOMContentLoaded", function() {
         ['rgba(75, 0, 130, 1)', 'rgba(75, 0, 130, 0)'],
         ['rgba(252, 142, 172, 1)', 'rgba(252, 142, 172, 0)'],
         ['rgba(0, 255, 195, 1)', 'rgba(0, 255, 195, 0)']
-    ];
+        ].map(src => {
+        const img = new Image();
+        img.src = src;
+        return img;
+    });
 
-    let notes = [];
-    const noteRadius = 10; // Size of the music notes
-    const noteCount = 19; // Total number of music notes to hide
+    let notes = generateNotes();
 
     function generateNotes() {
-        for (let i = 0; i < noteCount; i++) {
+        const notes = [];
+        for (let i = 0; i < noteImages.length; i++) {
             let note = {
+                img: noteImages[i],
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
                 revealed: false
             };
-            // Ensure notes are not clustered together
-            if (notes.some(n => Math.hypot(note.x - n.x, note.y - n.y) < noteRadius * 3)) {
-                i--; // Regenerate this note
-            } else {
-                notes.push(note);
-            }
+            notes.push(note);
         }
+        return notes;
     }
 
-    generateNotes();
+    function drawLight(x, y, color) {
+        const gradient = ctx.createRadialGradient(x, y, 1, x, y, 25);
+        gradient.addColorStop(0, color[0]);
+        gradient.addColorStop(1, color[1]);
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(x, y, 25, 0, 2 * Math.PI);
+        ctx.fill();
+    }
 
     function drawNoteImage(note, x, y) {
         if (!note.img.complete) {
