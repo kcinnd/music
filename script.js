@@ -86,14 +86,26 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function drawNoteImage(note, x, y) {
-        if (!note.img.complete) {
-            note.img.onload = function() {
-                ctx.drawImage(note.img, x - note.img.width / 2, y - note.img.height / 2);
-            }
-        } else {
-            ctx.drawImage(note.img, x - note.img.width / 2, y - note.img.height / 2);
-        }
+    const maxWidth = 100; // Maximum width for the note images
+    let imgWidth = note.img.width;
+    let imgHeight = note.img.height;
+
+    // Check if the image width exceeds the maximum allowed width
+    if (imgWidth > maxWidth) {
+        const scaleFactor = maxWidth / imgWidth; // Calculate the scaling factor
+        imgWidth = maxWidth; // Set the image width to the maximum width
+        imgHeight *= scaleFactor; // Adjust the height to maintain the aspect ratio
     }
+
+    // Draw the image centered on (x, y), scaled if necessary
+    if (!note.img.complete) {
+        note.img.onload = function() {
+            ctx.drawImage(note.img, x - imgWidth / 2, y - imgHeight / 2, imgWidth, imgHeight);
+        }
+    } else {
+        ctx.drawImage(note.img, x - imgWidth / 2, y - imgHeight / 2, imgWidth, imgHeight);
+    }
+}
 
     canvas.addEventListener('click', function(event) {
         const rect = canvas.getBoundingClientRect();
