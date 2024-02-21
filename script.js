@@ -45,9 +45,6 @@ document.addEventListener("DOMContentLoaded", function() {
         "https://i.imgur.com/ZbZ7sqd.png",
         "https://i.imgur.com/Y6GtKc3.png",
         "https://i.imgur.com/vxsTh2E.png",
-        "https://i.imgur.com/nttMAYw.png",
-        "https://i.imgur.com/lkUVei7.png",
-        "https://i.imgur.com/MENQtiW.png",
     ].map(src => {
         const img = new Image();
         img.src = src;
@@ -66,9 +63,6 @@ document.addEventListener("DOMContentLoaded", function() {
         "https://audio.jukehost.co.uk/xk3OfU1NDtUeRUQPlbcGmt8uNG3Hyr0m.mp3",
         "https://audio.jukehost.co.uk/hB9tnsYoYcOTi70O0oi5auIU3ZL6BEJx.mp3",
         "https://audio.jukehost.co.uk/WBe5RCJJP1vMfuaewKp1T39qm8Bm0auc.mp3",
-        "https://audio.jukehost.co.uk/Zs2Ef5WCCqJswEUHc18CjbezfCl9gseq.mp3",
-        "https://audio.jukehost.co.uk/26mQRqqYvPTbYVxegWXphWfYzPvlitOA.mp3",
-        "https://audio.jukehost.co.uk/3rJtM3HgdQKHPj6NVcsANgc39sPIlwfR.mp3",
 ];
 
     let notes = generateNotes();
