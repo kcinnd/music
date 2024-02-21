@@ -85,8 +85,8 @@ document.addEventListener("DOMContentLoaded", function() {
     
     function generateNotes() {
         const notes = [];
-        const margin = 100; // Margin value to keep notes away from the edges
-        const minDistance = 200; // Minimum distance between any two notes
+        const margin = 50; // Margin value to keep notes away from the edges
+        const minDistance = 75; // Minimum distance between any two notes
         const maxAttempts = 100; // Maximum attempts to place a note
 
         for (let i = 0; i < noteImages.length; i++) {
