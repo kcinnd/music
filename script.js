@@ -68,32 +68,32 @@ document.addEventListener("DOMContentLoaded", function() {
     let notes = generateNotes();
 
     function generateNotes() {
-    const notes = [];
-    const margin = 100; // Margin value to keep notes away from the edges
-    const minDistance = 200; // Minimum distance between any two notes
+        const notes = [];
+        const margin = 100; // Margin value to keep notes away from the edges
+        const minDistance = 200; // Minimum distance between any two notes
 
-    for (let i = 0; i < noteImages.length; i++) {
-        let isValidPosition = false;
-        let note;
+        for (let i = 0; i < noteImages.length; i++) {
+            let isValidPosition = false;
+            let note;
 
-        while (!isValidPosition) {
-            note = {
-                img: noteImages[i],
-                x: Math.random() * (canvas.width - 2 * margin) + margin,
-                y: Math.random() * (canvas.height - 2 * margin) + margin,
-                revealed: false,
-                audio: new Audio(audioClips[i])
-            };
+            while (!isValidPosition) {
+                note = {
+                    img: noteImages[i],
+                    x: Math.random() * (canvas.width - 2 * margin) + margin,
+                    y: Math.random() * (canvas.height - 2 * margin) + margin,
+                    revealed: false,
+                    audio: new Audio(audioClips[i])
+                };
 
-            isValidPosition = notes.every(existingNote => {
-                const dx = note.x - existingNote.x;
-                const dy = note.y - existingNote.y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-                return distance >= minDistance;
-            });
-        }
+                isValidPosition = notes.every(existingNote => {
+                    const dx = note.x - existingNote.x;
+                    const dy = note.y - existingNote.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    return distance >= minDistance;
+                });
+            }
 
-        notes.push(note);
+         notes.push(note);
     }
 
     return notes;
