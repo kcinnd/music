@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function drawNoteImage(note, x, y) {
-        const maxWidth = 100;
+        const maxWidth = 75;
         let imgWidth = note.img.width;
         let imgHeight = note.img.height;
 
