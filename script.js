@@ -54,9 +54,9 @@ document.addEventListener("DOMContentLoaded", function() {
         "https://i.imgur.com/Mz5cEJR.png",
         "https://i.imgur.com/IVHM0uZ.png"
     ].map(src => {
-        const img = new Image();
-        img.src = src;
-        return img;
+    const img = new Image();
+    img.src = src;
+    return img;
     });
 
     const audioClips = [
