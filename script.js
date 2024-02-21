@@ -48,11 +48,6 @@ document.addEventListener("DOMContentLoaded", function() {
         "https://i.imgur.com/nttMAYw.png",
         "https://i.imgur.com/lkUVei7.png",
         "https://i.imgur.com/MENQtiW.png",
-        "https://i.imgur.com/GXPMynI.png",
-        "https://i.imgur.com/Mlj0CoI.png",
-        "https://i.imgur.com/NmYfUe8.png",
-        "https://i.imgur.com/Mz5cEJR.png",
-        "https://i.imgur.com/IVHM0uZ.png"
     ].map(src => {
         const img = new Image();
         img.src = src;
@@ -74,11 +69,6 @@ document.addEventListener("DOMContentLoaded", function() {
         "https://audio.jukehost.co.uk/Zs2Ef5WCCqJswEUHc18CjbezfCl9gseq.mp3",
         "https://audio.jukehost.co.uk/26mQRqqYvPTbYVxegWXphWfYzPvlitOA.mp3",
         "https://audio.jukehost.co.uk/3rJtM3HgdQKHPj6NVcsANgc39sPIlwfR.mp3",
-        "https://audio.jukehost.co.uk/vAVSRkgnD3jff7jYigFHdZlV4gxkdUfQ.mp3",
-        "https://audio.jukehost.co.uk/xHRDRPYmIWURW5h4YTpgP3zZhl24NHBn.mp3",
-        "https://audio.jukehost.co.uk/Pkce3RxLuRVE31dMiSiUqeSQt4FaamBB.mp3",
-        "https://audio.jukehost.co.uk/2gRP6adaDph5ZaHRDaBZNhiggfhPhmGa.mp3",
-        "https://audio.jukehost.co.uk/sSUTAJ1O3JYJ8nNfuV5LC55avoRySwAZ.mp3"
 ];
 
     let notes = generateNotes();
