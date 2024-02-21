@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     return notes;
-}
+    }
 
     function drawLight(x, y, color) {
         const gradient = ctx.createRadialGradient(x, y, 1, x, y, 50);
