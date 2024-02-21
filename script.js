@@ -82,38 +82,46 @@ document.addEventListener("DOMContentLoaded", function() {
     ];
 
     let notes = generateNotes();
-
+    
     function generateNotes() {
         const notes = [];
         const margin = 100; // Margin value to keep notes away from the edges
         const minDistance = 200; // Minimum distance between any two notes
+        const maxAttempts = 100; // Maximum attempts to place a note
 
         for (let i = 0; i < noteImages.length; i++) {
             let isValidPosition = false;
             let note;
+            let attempts = 0;
 
-            while (!isValidPosition) {
+            while (!isValidPosition && attempts < maxAttempts) {
                 note = {
                     img: noteImages[i],
                     x: Math.random() * (canvas.width - 2 * margin) + margin,
                     y: Math.random() * (canvas.height - 2 * margin) + margin,
                     revealed: false,
-                    audio: new Audio(audioClips[i])
+                    audio: new Audio(audioClips[i % audioClips.length]) // Using modulo for audio clips array to avoid index out of bounds
                 };
-
+    
                 isValidPosition = notes.every(existingNote => {
                     const dx = note.x - existingNote.x;
                     const dy = note.y - existingNote.y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-                    return distance >= minDistance;
+                    return Math.sqrt(dx * dx + dy * dy) >= minDistance;
                 });
+    
+                attempts++;
             }
-
-         notes.push(note);
-    }
-
-    return notes;
-    }
+    
+            if (attempts < maxAttempts) {
+                notes.push(note); // This line is crucial and should be included
+            } else {
+                console.warn('Max attempts reached, stopped adding more notes to avoid infinite loop.');
+                break; // Break out of the loop to prevent infinite attempts
+            }
+        }
+    
+        return notes;
+    } // Closing bracket for generateNotes function
 
     function drawLight(x, y, color) {
         const gradient = ctx.createRadialGradient(x, y, 1, x, y, 50);
